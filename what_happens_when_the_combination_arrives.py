@@ -20,6 +20,16 @@ def what_happends_when_the_combination_arrives(combination,cores):
     #The combinations of the result below give that information
     [affected_rules, there_are_same_class] = collect_interserting_or_interacting_rules(combination,cores)
     print(affected_rules,there_are_same_class) 
+    if there_are_same_class == True:
+        #breack the rules and call RuLer
+        print('rules of the same class are playing')
+        # solve the contradictions
+
+    else:
+        # call find optimum partition
+        print('find optimum partition')
+
+
 
 combination = (3, 7, 'B')
 cores = [  [{1,4}, {6,8}, 'A']  ] 
