@@ -21,12 +21,12 @@ def what_happends_when_the_combination_arrives(combination,cores):
     [affected_rules, there_are_same_class] = collect_interserting_or_interacting_rules(combination,cores)
     print(affected_rules,there_are_same_class) 
     if there_are_same_class == True:
-        #breack the rules and call RuLer
+        # 1. breack the rules and call RuLer
         print('rules of the same class are playing')
-        # solve the contradictions
+        # 2. solve the contradictions
 
     else:
-        # call find optimum partition
+        # 1. call find optimum partition
         print('find optimum partition')
 
 
