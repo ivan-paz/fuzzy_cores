@@ -9,8 +9,7 @@
 #
 #
 from find_intersect_or_interact import collect_interserting_or_interacting_rules
-
-def what_happends_when_the_combination_arrives(combination,cores):
+def what_happends_when_combination_arrives(combination,cores):
     # 1. Find which cores are affected
     # Different class intersected
     # Same class intersected or interaction with
@@ -19,32 +18,15 @@ def what_happends_when_the_combination_arrives(combination,cores):
     #
     #The combinations of the result below give that information
     [affected_rules, there_are_same_class] = collect_interserting_or_interacting_rules(combination,cores)
-    print(affected_rules,there_are_same_class) 
+    #print(combination,affected_rules,there_are_same_class) 
     if there_are_same_class == True:
-        # 1. breack the rules and call RuLer
-        print('rules of the same class are playing')
+        # 1. breack the affected rules and call RuLer
+        return 'same class'
         # 2. solve the contradictions
-
     else:
+        if affected_rules:
         # 1. call find optimum partition
-        print('find optimum partition')
-
-
-
-combination = (3, 7, 'B')
-cores = [  [{1,4}, {6,8}, 'A']  ] 
-what_happends_when_the_combination_arrives(combination,cores)
-
-combination = (3, 7, 'B')
-cores = [  [{1,4}, {6,8}, 'B']  ] 
-what_happends_when_the_combination_arrives(combination,cores)
-
-combination = (3, 7, 'B')
-cores = [  [{1,4}, {6,8}, 'A'], [{3},{10},'B']  ] 
-what_happends_when_the_combination_arrives(combination,cores)
-
-
-combination = (3, 7, 'B')
-cores = [  [{1,4}, {10}, 'A']  ] 
-what_happends_when_the_combination_arrives(combination,cores)
+            return 'different class'
+        else:
+            return 'nothing'
 

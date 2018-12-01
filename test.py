@@ -6,6 +6,8 @@ from find_intersect_or_interact import interval_intersection
 from find_intersect_or_interact import intersection
 from find_intersect_or_interact import intersects_or_interacts
 from find_intersect_or_interact import collect_interserting_or_interacting_rules
+from what_happens_when_the_combination_arrives import what_happends_when_combination_arrives
+from commit_cores import instance_to_set_format
 def test(l):
         l()
         sys.stdout.write('.')
@@ -61,18 +63,26 @@ def xxx():
     assert collect_interserting_or_interacting_rules(pattern,rules) == [[[{2, 5}, {9, 7}, 'A'], [{2, 5}, {9, 7}, 'B']], True]
 test(xxx)
 
-#def xxx():
-#    rules = [[{6,10},{4,6},'A'],[{8},{3,7},'A']]
-#    pattern = (7,5,'B')
-#    assert find_intersected_rules(pattern, rules) == [ [[{6,10},{4,6},'A']],False]
-#    rules = [[{6,10},{4,6},'A'],[{8},{3,7},'A']]
-#    pattern = (8,5,'B')
-#    assert find_intersected_rules(pattern, rules) == [ [[{6,10},{4,6},'A'],[{8},{3,7},'A']], False]
-#    rules = [[{6,10},{4,6},'A']]
-#    pattern = (7,5,'A')
-#    assert find_intersected_rules(pattern, rules) == [ [[{6,10},{4,6},'A']],True]
-#test(xxx)
+def xxx():
+    combination = (3, 7, 'B')
+    cores = [  [{1,4}, {6,8}, 'A']  ]
+    assert 'different class' == what_happends_when_combination_arrives(combination,cores)
 
+    combination = (3, 7, 'B')
+    cores = [  [{1,4}, {6,8}, 'B']  ]
+    assert 'same class' ==  what_happends_when_combination_arrives(combination,cores)
 
+    combination = (3, 7, 'B')
+    cores = [  [{1,4}, {6,8}, 'A'], [{3},{10},'B']  ]
+    assert 'same class' ==  what_happends_when_combination_arrives(combination,cores)
 
+    combination = (3, 7, 'B')
+    cores = [  [{1,4}, {10}, 'A']  ]
+    assert 'nothing' ==  what_happends_when_combination_arrives(combination,cores)
+test(xxx)
+
+def xxx():
+    instance = (2,4,6,'B')
+    assert instance_to_set_format(instance) == [{2},{4},{6},'B']
+test(xxx)
 print('\nAll passed!')

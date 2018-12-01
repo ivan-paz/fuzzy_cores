@@ -502,7 +502,7 @@ def Diff(li1, li2):
 def adjust_cores(cores,pattern):
     partitions = []
     # 1. find intersected rules
-    intersected_rules = find_intersected_rules(pattern, rules)
+    intersected_rules = find_intersected_rules(pattern, cores)
     # 2. for each intersected rule create rule partitions
     [partitions.append(create_rule_partitions(rule,pattern)) for rule in intersected_rules]
     #print('these the partitions of the intersected rules: ')
@@ -527,40 +527,42 @@ def adjust_cores(cores,pattern):
 #    print(result)
     return result
 
-#    If the pattern intersects a core of different class, there are two possibilities:
-#    1. inside the core
-#    One dimension
+##    If the pattern intersects a core of different class, there are two possibilities:
+##    1. inside the core
+##    One dimension
 #Example 1
-rules = [ [{8},{3,5},'A'] ]
-pattern =  (8,   4,  'B')
-#Example 2
-rules = [ [{8},{3,5,7},'A'] ]
-pattern =  (8,   4,  'B')
-#    Two dimensions
-#Example 3
-rules = [ [{8,11},{3,5},'A'] ]
-pattern =  (9,   4,  'B')
-#Example 4
-rules = [ [{8,11,14},{3,5},'A'] ]
-pattern =  (9,   4,  'B')
+#rules = [ [{8},{3,5},'A'] ]
+#pattern =  (8,   4,  'B')
+#print(adjust_cores(rules,pattern))
 
-#    2. on the border
-#Example 5 -- note that the rule is cut by one of the two dimensions
-rules = [ [{8,10},{3,5,7},'A'] ]
-pattern =  (9,  3,  'B')
-
-# Two rules intersected by a new pattern inside the cores.
-#Example 6
-rules = [[{6,10},{4,6},'A'],[{8},{3,7},'A']]
-pattern = (8,5,'B')
-
-#Example 7 (not on the notebook)
-#  an intersected rule of different class and a non intersected rule
-rules = [ [{8},{3,5},'A'], [{2},{6},'A'] ]
-pattern =  (8,   4,  'B')
-
-
-
-
-print(adjust_cores(rules,pattern))
-
+##Example 2
+#rules = [ [{8},{3,5,7},'A'] ]
+#pattern =  (8,   4,  'B')
+##    Two dimensions
+##Example 3
+#rules = [ [{8,11},{3,5},'A'] ]
+#pattern =  (9,   4,  'B')
+##Example 4
+#rules = [ [{8,11,14},{3,5},'A'] ]
+#pattern =  (9,   4,  'B')
+#
+##    2. on the border
+##Example 5 -- note that the rule is cut by one of the two dimensions
+#rules = [ [{8,10},{3,5,7},'A'] ]
+#pattern =  (9,  3,  'B')
+#
+## Two rules intersected by a new pattern inside the cores.
+##Example 6
+#rules = [[{6,10},{4,6},'A'],[{8},{3,7},'A']]
+#pattern = (8,5,'B')
+#
+##Example 7 (not on the notebook)
+##  an intersected rule of different class and a non intersected rule
+#rules = [ [{8},{3,5},'A'], [{2},{6},'A'] ]
+#pattern =  (8,   4,  'B')
+#
+#
+#
+#
+#print(adjust_cores(rules,pattern))
+#
