@@ -6,6 +6,7 @@ from ruler import ruleExtraction
 #-----------------------------------------------------------------------------
 
 
+#-----------------------------------------------------------------------------
 #function that converts an instance into set format
 def instance_to_set_format(instance):
     set_format = []
@@ -13,22 +14,32 @@ def instance_to_set_format(instance):
         set_format.append(set([instance[i]]))
     set_format.append( instance[-1] )
     return set_format
+#-----------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------
 #break the affected cores into pieces
 import itertools
 import copy
-#rule = [1, [2,3], 'A']
-rule = [[1,4], [5,6], 'B']
 def expand_rule(rule):
     rule = copy.deepcopy(rule)
     expanded_rule = []
     for i in range(len(rule)):
-        if type(rule[i]) != list:
-            rule[i] = [rule[i]]
+        rule[i] = rule[i]
     for i in itertools.product(*rule):
         expanded_rule.append(i)
     return expanded_rule
-print(expand_rule(rule))
 
+#cores = [[{1, 4}, {8, 6}, 'A'], [{3}, {6}, 'A']]
+def expand_cores(cores):
+    expanded = []
+    for c in cores:
+        expanded_core = expand_rule(c)
+        temporal = []
+        for i in expanded_core:
+            i = instance_to_set_format(i)
+            temporal.append(i)
+        [expanded.append(i) for i in temporal]
+    return expanded
 
 def commit_cores(new_instance,cores):
 
@@ -43,7 +54,9 @@ def commit_cores(new_instance,cores):
         #break the rules
         #call ruler
         cores.append(instance_to_set_format(new_instance))
-        print(ruleExtraction(cores,1,0))
+        cores = expand_cores(cores)
+        print('cores for ruler:',cores) 
+        cores = ruleExtraction(cores,1,0)
         #solve the contradictions
 
     elif case == 'different class':
@@ -53,7 +66,7 @@ def commit_cores(new_instance,cores):
     else:
         print('nothing')
         cores.append(instance_to_set_format(new_instance))
-    print('final',cores)
+    print('final cores  : ',cores)
 
 #combination = (3, 7, 'B') 
 #cores = []

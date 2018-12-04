@@ -8,6 +8,9 @@ from find_intersect_or_interact import intersects_or_interacts
 from find_intersect_or_interact import collect_interserting_or_interacting_rules
 from what_happens_when_the_combination_arrives import what_happends_when_combination_arrives
 from commit_cores import instance_to_set_format
+from commit_cores import expand_rule
+from commit_cores import expand_cores
+
 def test(l):
         l()
         sys.stdout.write('.')
@@ -85,4 +88,17 @@ def xxx():
     instance = (2,4,6,'B')
     assert instance_to_set_format(instance) == [{2},{4},{6},'B']
 test(xxx)
+
+def xxx():
+    rule = [{1}, [2,3], 'A']
+    assert expand_rule(rule) == [(1, 2, 'A'), (1, 3, 'A')]
+    rule = [{1,4}, {5,6}, 'B']
+    assert expand_rule(rule) == [(1, 5, 'B'), (1, 6, 'B'), (4, 5, 'B'), (4, 6, 'B')]
+test(xxx)
+
+def xxx():
+    cores =  [[{1, 4}, {8, 6}, 'A'], [{3}, {6}, 'A']]
+    assert expand_cores(cores) == [[{1}, {8}, 'A'], [{1}, {6}, 'A'], [{4}, {8}, 'A'], [{4}, {6}, 'A'], [{3}, {6}, 'A']]
+test(xxx)
+
 print('\nAll passed!')

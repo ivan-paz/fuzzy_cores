@@ -234,9 +234,9 @@ def ruleExtraction(Rules,d,ratio):
         [rulesCurrentCategory,otherRules] = getCategory(category,categoriesDict)
         rules = iterate(rulesCurrentCategory,d,otherRules,ratio)
         [finalRules.append(rule) for rule in rules]
-    print('Final set of rules : ')
-    print('-----------------------')
-    #[print(r) for r in finalRules]
+    #print('Final set of rules : ')
+    #print('-----------------------')
+    #[print('rule',r) for r in finalRules]
     return finalRules
 
 #    Quick Tests
