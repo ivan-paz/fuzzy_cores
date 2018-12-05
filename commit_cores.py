@@ -40,7 +40,8 @@ def expand_cores(cores):
             temporal.append(i)
         [expanded.append(i) for i in temporal]
     return expanded
-
+#--------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 def commit_cores(new_instance,cores):
 
     if cores == []:
