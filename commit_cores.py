@@ -3,6 +3,7 @@
 from what_happens_when_the_combination_arrives import what_happends_when_combination_arrives
 from optimum_partition_different_class import adjust_cores
 from ruler import ruleExtraction
+from break_and_keep_max_volume import solve_contradictions_seek_maximum_volume
 #-----------------------------------------------------------------------------
 
 
@@ -41,6 +42,30 @@ def expand_cores(cores):
         [expanded.append(i) for i in temporal]
     return expanded
 #--------------------------------------------------------------------------
+def tuple_format(rule):
+    in_tuple = []
+    for i in range(len(rule)-1):
+        in_tuple.append(tuple(rule[i]))
+    in_tuple.append(rule[-1])
+    print(in_tuple)
+    return in_tuple
+#tuple_format([{1, 4}, {8, 6}, 'A'])
+
+#tuple to set format
+def tuple_to_set_format(rule):
+    in_set = []
+    for i in range(len(rule)-1):
+        if type(rule[i])==tuple:
+            temporal = []
+            [temporal.append(j) for j in rule[i]]
+            in_set.append(temporal)
+        else:
+            in_set.append(rule[i])
+    in_set.append(rule[-1])
+    print(in_set)
+    return in_set
+#print( tuple_to_set_format( [(1, 4), (6,), 'A']))
+
 #--------------------------------------------------------------------------
 def commit_cores(new_instance,cores):
 
@@ -52,14 +77,18 @@ def commit_cores(new_instance,cores):
     
     if case == 'same class':
         print('same class')
-        #break the rules
-        #call ruler
         cores.append(instance_to_set_format(new_instance))
+        #break the rules
         cores = expand_cores(cores)
-        print('cores for ruler:',cores) 
+        print('cores for ruler:',cores)
+        #call ruler
         cores = ruleExtraction(cores,1,0)
         #solve the contradictions
-
+        # convert the rules into tuple format
+        temporal = []
+        [temporal.append(tuple_format(rule)) for rule in cores]
+        print(temporal)
+        cores = solve_contradictions_seek_maximum_volume(temporal)
     elif case == 'different class':
         print('different class')
         cores = adjust_cores(cores,new_instance)
@@ -84,7 +113,7 @@ def commit_cores(new_instance,cores):
 #commit_cores(combination,cores)
 
 # same class
-#combination = (3, 6, 'A') 
-#cores = [  [{1,4}, {6,8}, 'A']  ]
-#commit_cores(combination,cores)
+combination = (3, 6, 'A') 
+cores = [  [{1,4}, {6,8}, 'A']  ]
+commit_cores(combination,cores)
 
