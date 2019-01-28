@@ -17,7 +17,7 @@ def similarity(rule1,rule2,d):
             difference +=1
             indexes.append(i)
     if difference <= d:
-        print('The number of empty sets between',rule1,'and',rule2,'is',difference,'which is less equal than',d,'and therefore they can be grouped')
+#        print('The number of empty sets between',rule1,'and',rule2,'is',difference,'which is less equal than',d,'and therefore they can be grouped')
         return [True, unions, intersections, indexes]
     else:
         return [False, None, None, None]
@@ -105,14 +105,14 @@ def create_rule(rule1, unions, originalRules, d, otherRules, ratio):
     if d == 1:
         all_rules = allRules(rule, originalRules)
         if all_rules:
-            print(rule,'has been created')
+ #           print(rule,'has been created')
             return rule
         else:
             return False
     if d >=2:
   #      print('d is >= 2')
         create = generalizationANDcontradictions(rule,originalRules,otherRules,ratio)
-        print('create',create)
+#        print('create',create)
         if create:
             return create
         else:
@@ -181,9 +181,9 @@ def search_patterns(rulesCurrentCategory, d, originalRules,otherRules,ratio):
                 rule = create_rule(r1, unions, originalRules, d,otherRules,ratio)
                 if rule!=False and rule not in newRules:
                     newRules.append(rule)
-    print('previous rules',rulesCurrentCategory,'new created rules',newRules)
+ #   print('previous rules',rulesCurrentCategory,'new created rules',newRules)
     [rulesCurrentCategory.append(r) for r in newRules]
-    print('deleting redundant rules . . . . ')
+  #  print('deleting redundant rules . . . . ')
     rules = deleteRedundant(rulesCurrentCategory)
     return rules
 

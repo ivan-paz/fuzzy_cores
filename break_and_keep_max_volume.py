@@ -655,6 +655,7 @@ def solve_contradictions_seek_maximum_volume(rule_set):
     all_the_partitions = all_partitions(rule_set)
     if len(all_the_partitions)==0:
         return rule_set
+    #print('ALL THE PARTITIONS',all_the_partitions)
     combinations_of_the_partitions = create_combinations_from_rule_partitions(all_the_partitions)
     index_of_the_combination_with_maximum_volume = find_combination_with_maximum_volume( partition_volumes( combinations_of_the_partitions  ))
     print( 'comb with max vol',combinations_of_the_partitions[index_of_the_combination_with_maximum_volume])

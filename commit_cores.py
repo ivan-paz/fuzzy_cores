@@ -4,6 +4,7 @@ from what_happens_when_the_combination_arrives import what_happends_when_combina
 from optimum_partition_different_class import adjust_cores
 from ruler import ruleExtraction
 from break_and_keep_max_volume import solve_contradictions_seek_maximum_volume
+from compare_two_rule_sets import set_difference
 #-----------------------------------------------------------------------------
 
 
@@ -68,7 +69,6 @@ def tuple_to_set_format(rule):
 
 #--------------------------------------------------------------------------
 def commit_cores(new_instance,cores):
-
     if cores == []:
         cores.append(instance_to_set_format(new_instance))
         return cores
@@ -77,6 +77,7 @@ def commit_cores(new_instance,cores):
     
     if case == 'same class':
         print('same class')
+        
         cores.append(instance_to_set_format(new_instance))
         #break the rules
         cores = expand_cores(cores)
@@ -87,33 +88,27 @@ def commit_cores(new_instance,cores):
         # convert the rules into tuple format
         temporal = []
         [temporal.append(tuple_format(rule)) for rule in cores]
-        print(temporal)
+        #print('temporal :  ',  temporal  )
         cores = solve_contradictions_seek_maximum_volume(temporal)
+        #print('cores after solve_contradictions', cores)
+        
+        rules_to_include = set_difference(temporal,cores[0])
+        print('rules_to_include',rules_to_include)
+        [rules_to_include.append(r) for r in cores[0]]
+        print('rules to include  : ', rules_to_include,type(rules_to_include))
+        print('cores: ',cores,type(cores))
+
+
     elif case == 'different class':
         print('different class')
         cores = adjust_cores(cores,new_instance)
-
     else:
         print('nothing')
         cores.append(instance_to_set_format(new_instance))
+
     print('final cores  : ',cores)
+    return cores
 
-#combination = (3, 7, 'B') 
-#cores = []
-#commit_cores(combination,cores)
 
-#different class
-#combination = (3, 7, 'B') 
-#cores = [  [{1,4}, {6,8}, 'A']  ]
-#commit_cores(combination,cores)
 
-#nothing
-#combination = (5, 7, 'B') 
-#cores = [  [{1,4}, {6,8}, 'A']  ]
-#commit_cores(combination,cores)
-
-# same class
-combination = (3, 6, 'A') 
-cores = [  [{1,4}, {6,8}, 'A']  ]
-commit_cores(combination,cores)
 
