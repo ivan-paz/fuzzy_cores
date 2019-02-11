@@ -1,11 +1,17 @@
-#         import the necessary functions
+#-------------------------------------------------------------------------------------
 #
+#               import the necessary functions
+#
+#
+#-------------------------------------------------------------------------------------
 from what_happens_when_the_combination_arrives import what_happends_when_combination_arrives
 from optimum_partition_different_class import adjust_cores
 from ruler import ruleExtraction
 from break_and_keep_max_volume import solve_contradictions_seek_maximum_volume
 from compare_two_rule_sets import set_difference
-#-----------------------------------------------------------------------------
+
+
+
 
 
 #-----------------------------------------------------------------------------
@@ -68,15 +74,17 @@ def tuple_to_set_format(rule):
 #print( tuple_to_set_format( [(1, 4), (6,), 'A']))
 
 #--------------------------------------------------------------------------
+# receives a new instance and commit a set of cores
+
 def commit_cores(new_instance,cores):
     if cores == []:
         cores.append(instance_to_set_format(new_instance))
         return cores
-
+    
     case = what_happends_when_combination_arrives(new_instance,cores)
     
     if case == 'same class':
-        print('same class')
+        print('SAME class')
         
         cores.append(instance_to_set_format(new_instance))
         #break the rules
@@ -90,14 +98,18 @@ def commit_cores(new_instance,cores):
         [temporal.append(tuple_format(rule)) for rule in cores]
         #print('temporal :  ',  temporal  )
         cores = solve_contradictions_seek_maximum_volume(temporal)
-        #print('cores after solve_contradictions', cores)
+        print('cores after solve_contradictions', cores)
         
-        rules_to_include = set_difference(temporal,cores[0])
-        print('rules_to_include',rules_to_include)
-        [rules_to_include.append(r) for r in cores[0]]
-        print('rules to include  : ', rules_to_include,type(rules_to_include))
-        print('cores: ',cores,type(cores))
-
+        #rules_to_include = set_difference(temporal,cores[0])
+        #print('rules_to_include',rules_to_include)
+        #[rules_to_include.append(r) for r in cores[0]]
+        #print('rules to include  : ', rules_to_include,type(rules_to_include))
+        #[ print(r,type(r)) for r in rules_to_include ]
+        #t = []
+        #for r in rules_to_include:
+        #    t.append(tuple_to_set_format(r))
+        #cores = t
+        #print('cores: ',cores,type(cores))
 
     elif case == 'different class':
         print('different class')
