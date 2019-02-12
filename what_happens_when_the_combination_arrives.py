@@ -9,6 +9,7 @@
 #
 #
 from find_intersect_or_interact import collect_interserting_or_interacting_rules
+
 def what_happends_when_combination_arrives(combination,cores):
     # 1. Find which cores are affected
     # Different class intersected

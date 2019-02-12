@@ -100,16 +100,26 @@ def commit_cores(new_instance,cores):
         cores = solve_contradictions_seek_maximum_volume(temporal)
         print('cores after solve_contradictions', cores)
         
-        #rules_to_include = set_difference(temporal,cores[0])
-        #print('rules_to_include',rules_to_include)
-        #[rules_to_include.append(r) for r in cores[0]]
-        #print('rules to include  : ', rules_to_include,type(rules_to_include))
-        #[ print(r,type(r)) for r in rules_to_include ]
-        #t = []
-        #for r in rules_to_include:
-        #    t.append(tuple_to_set_format(r))
-        #cores = t
-        #print('cores: ',cores,type(cores))
+        rules_to_include = set_difference(temporal,cores[0])
+        print('rules_to_include',rules_to_include)
+        
+        print('type of cores ::::::: ',type(cores))
+
+        if type(cores) == list:
+            [rules_to_include.append(r) for r in cores if r not in rules_to_include]
+            
+        else:
+            print('cores[0]', cores)
+            if len(cores[0])!=1:
+                for c in cores:
+                    for r in c:
+                        if r not in rules_to_include:
+                            rules_to_include.append(r)
+            else:
+                [rules_to_include.append(r) for r in cores[0] if r not in rules_to_include]
+
+        print('RULES to include  : ', rules_to_include)
+        return rules_to_include
 
     elif case == 'different class':
         print('different class')

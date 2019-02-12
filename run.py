@@ -27,16 +27,16 @@ from commit_cores import tuple_to_set_format
 #cores = [  [{1,4}, {6,8}, 'A']  ]
 #commit_cores(combination,cores)
 
-#data = [
-#        (2,3,'A'),
-#        (3,3,'A'),
-#        (3,5,'A'),
-#        (4,3,'B'),
-#        (5,4,'B'),
-#        (5,6,'A'),
-#        (6,3,'B')
-#        (7,3,'A')
-#        ]
+data = [
+        (2,3,'A'),
+        (3,3,'A'),
+        (3,5,'A'),
+        (4,3,'B'),
+        (5,4,'B'),
+        (5,6,'A'),
+        (6,3,'B'),
+        (7,3,'A')
+        ]
 
 #data = [
 #        (2,3,'A'),
@@ -44,80 +44,92 @@ from commit_cores import tuple_to_set_format
 #        (7,3,'A'),
 #        (6,3,'B')
 #        ]
-#
-#cores = []
-#for datum in data:
-#    cores = commit_cores(datum,cores)
-#    if type(cores)!=list:
-#        print('no es una lista')
+data = [
+        (1,1,'A'),
+        (1,3,'A'),
+        (3,1,'A'),
+        (3,3,'A'),
+        (4,2,'B'),
+        (4,6,'B'),
+        (5,1,'A'),
+        (5,3,'A'),
+        (6,1,'A'),
+        (6,3,'A')
+        ]
 
+
+cores = []
+for datum in data:
+    print('::::::::::: datum', datum)
+    cores = commit_cores(datum,cores)
+print('This are the resulting cores :: ',cores)
 
 #
 #   debug
 #
 #
     #   Case 1 Empty cores and any instance.
-cores = []
-datum = (2,3,'A')
-cores = commit_cores(datum,cores)
-print(cores)
+#cores = []
+#datum = (2,3,'A')
+#cores = commit_cores(datum,cores)
+#print(cores)
+#
+#cores = [[{2}, {3}, 'A']]
+#datum = (3,3,'A')
+#cores = commit_cores(datum,cores)
+#temporal = []
+#for r in cores:
+#    temporal.append(tuple_to_set_format(r))
+#cores = temporal
+#print(cores)
+#
+#
+#cores = [[[2, 3], [3], 'A']]
+#datum = (3,5,'A')
+#cores = commit_cores(datum,cores)
+#temporal = []
+#for r in cores:
+#    temporal.append(tuple_to_set_format(r))
+#cores = temporal
+#print(cores)
+#
+#cores = [[[2, 3], [3], 'A'], [[3], [3, 5], 'A']]
+#datum = (4,3,'B')
+#cores = commit_cores(datum,cores)
+#temporal = []
+#for r in cores:
+#    temporal.append(tuple_to_set_format(r))
+#cores = temporal
+#print(cores)
+#
+#cores = [[[2, 3], [3], 'A'], [[3], [3, 5], 'A'], [{4}, {3}, 'B']]
+#datum = (5,4,'B')
+#cores = commit_cores(datum,cores)
+#temporal = []
+#for r in cores:
+#    temporal.append(tuple_to_set_format(r))
+#cores = temporal
+#print(cores)
+#
+#cores = [[[2, 3], [3], 'A'], [[3], [3, 5], 'A'], [{4}, {3}, 'B'], [{5}, {4}, 'B']]
+#datum = (5,6,'A')
+#cores = commit_cores(datum,cores)
+#temporal = []
+#for r in cores:
+#    temporal.append(tuple_to_set_format(r))
+#cores = temporal
+#print(cores)
 
-cores = [[{2}, {3}, 'A']]
-datum = (3,3,'A')
-cores = commit_cores(datum,cores)
-temporal = []
-for r in cores:
-    temporal.append(tuple_to_set_format(r))
-cores = temporal
-print(cores)
-
-
-cores = [[[2, 3], [3], 'A']]
-datum = (3,5,'A')
-cores = commit_cores(datum,cores)
-temporal = []
-for r in cores:
-    temporal.append(tuple_to_set_format(r))
-cores = temporal
-print(cores)
-
-cores = [[[2, 3], [3], 'A'], [[3], [3, 5], 'A']]
-datum = (4,3,'B')
-cores = commit_cores(datum,cores)
-temporal = []
-for r in cores:
-    temporal.append(tuple_to_set_format(r))
-cores = temporal
-print(cores)
-
-cores = [[[2, 3], [3], 'A'], [[3], [3, 5], 'A'], [{4}, {3}, 'B']]
-datum = (5,4,'B')
-cores = commit_cores(datum,cores)
-temporal = []
-for r in cores:
-    temporal.append(tuple_to_set_format(r))
-cores = temporal
-print(cores)
-
-cores = [[[2, 3], [3], 'A'], [[3], [3, 5], 'A'], [{4}, {3}, 'B'], [{5}, {4}, 'B']]
-datum = (5,6,'A')
-cores = commit_cores(datum,cores)
-temporal = []
-for r in cores:
-    temporal.append(tuple_to_set_format(r))
-cores = temporal
-print(cores)
-
-cores = [[[2, 3], [3], 'A'], [[3], [3, 5], 'A'], [{4}, {3}, 'B'], [{5}, {4}, 'B'], [{5}, {6}, 'A']]
-datum = (6,3,'B')
-print('datum',datum)
-cores = commit_cores(datum,cores)
-temporal = []
-for r in cores:
-    temporal.append(tuple_to_set_format(r))
-cores = temporal
-print('CORES: ',cores)
-
+#cores = [[[2, 3], [3], 'A'], [[3], [3, 5], 'A'], [{4}, {3}, 'B'], [{5}, {4}, 'B'], [{5}, {6}, 'A']]
+#datum = (6,3,'B')
+#print('datum',datum)
+#cores = commit_cores(datum,cores)
+#temporal = []
+#for r in cores:
+#    temporal.append(tuple_to_set_format(r))
+#cores = temporal
+#print('CORES: ',cores)
+#print('--------------------------------------------------------------------------------')
 #cores = [[[5], [6], 'A'], [[2, 3], [3], 'A'], [[3], [3, 5], 'A'], [[5], [4], 'B'], [[4, 6], [3], 'B']]
 #datum = (7,3,'A')
 #print('datum', datum)
